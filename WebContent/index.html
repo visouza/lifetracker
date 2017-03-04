@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title> My recat app</title>
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+     <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+
+
+
+     <!--<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/cosmo/bootstrap.min.css" type="text/css" rel="stylesheet"/>-->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+     <!--<link href="./css/LoginStyle.css" type="text/css" rel="stylesheet"/>-->
+
+
+    <!--<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/cosmo/bootstrap.min.css" type="text/css" rel="stylesheet"/> -->
+  </head>
+
+  <body>
+    <div id="fb-root"></div>
+    <div id="try idp">idp try</div>
+    <div id="app">Hi im there</div>
+
+    <script src="client.min.js"></script>
+
+    <script>
+ window.fbAsyncInit = function() {
+   console.log('Initializing fb');
+   FB.init({
+     appId      : '120081171845466',
+     cookie     : true,
+     xfbml      : true,
+     version    : 'v2.8'
+   });
+ };
+
+ (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+ </script>
+ <script>
+ $(window).load(function() {
+ console.log(' executing here'  );
+ console.log(FB);
+ console.log('here1');
+ FB.getLoginStatus(function(response) {
+   console.log('FBloginresponse',response);
+   if (response.status === 'connected') {
+     console.log('Logged in.');
+     console.log(response);
+   }
+   else {
+           console.log('response',response);
+     FB.login();
+   }
+ });
+ console.log('here2');
+ var status = FB.getLoginStatus();
+ console.log( 'status' , status  );
+
+ function login() {
+   FB.getLoginStatus(function(response) {
+     console.log("response",response);
+  });
+      FB.login(function(response) {
+
+      // handle the response
+      console.log("Response goes here!");
+
+      }, {scope: 'read_stream,publish_stream,publish_actions,read_friendlists'});
+  }
+  login();
+ });
+
+ function checkLoginState() {
+  FB.getLoginStatus(function(response) {
+    console.log( 'response' , response  );
+
+  });
+  }
+  checkLoginState();
+
+ </script>
+
+
+
+  </body>
+</html>
